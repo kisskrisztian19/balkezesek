@@ -72,13 +72,29 @@ namespace balkezesek
             Console.WriteLine($"6. Feladat: {(atlag/db):N2} font");
         }
 
-        
+        static void HetedikFeladat()
+        {
+            var abc = from n in Lista
+                        orderby n.nev
+                        group n
+                        by n.nev[0] into abcTemp
+                        select abcTemp;
+            foreach (var abcGroup in abc)
+            {
+                Console.WriteLine(abcGroup.Key);
+                foreach (var i in abcGroup)
+                {
+                    Console.WriteLine($"\t{i.nev}");
+                }
+            }
+        }
         static void Main(string[] args)
         {
             Beolvas();
             HarmadikFeladat();
             NegyedikFeladat();
             OtHatFeladat();
+            HetedikFeladat();
             Console.ReadLine();
         }
     }
